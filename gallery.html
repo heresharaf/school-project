@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cf8181;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery {
+            padding: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        figure {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 200px;
+        }
+
+        figure:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+        }
+
+        figcaption {
+            text-align: center;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+       #navebar {
+            background: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+      
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #fdd835;
+        }
+    </style>
+</head>
+<body>
+    <header id="navbar">
+        Lumbini - Birthplace of Buddha
+        <nav>
+            <a href="index.html">About</a>
+            <a href="history.html">History</a>
+            <a href="visiting.html">Visiting</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <a href="servey.html">Survey</a>
+        </nav>
+    </header>
+    
+
+    <header>
+        <h1>Image Gallery</h1>
+    </header>
+
+    <div class="gallery">
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <figure>
+                    <figcaption>Peace monument.</figcaption>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Shanti_dip%2C_Lumbini.jpg/1200px-Shanti_dip%2C_Lumbini.jpg" alt="Shanti Stupa" onclick="openModal(this)">
+                </figure>
+                <figure>
+                    <figcaption>Symbol of peace.</figcaption>
+                    <img src="https://media.istockphoto.com/id/1166026488/photo/lumbini_peacepagoda2.jpg?s=612x612&w=0&k=20&c=u5mTmZ-r2NsOvmfjHBjvtJdHwnG-6pk8Jxh2r2gKHPc=" alt="Peace Pagoda" onclick="openModal(this)"> 
+                </figure>
+                <figure>
+                    <figcaption>Monks' area.</figcaption>
+                    <img src="https://www.flamingotravels.net/_next/image?url=https%3A%2F%2Fimgcdn.flamingotravels.co.in%2FImages%2FPlacesOfInterest%2FLumbini-Monastic-Site-nepal-think-to-do-Interest-3.jpg&w=828&q=90" alt="Monastic Site" onclick="openModal(this)">                 
+                </figure>
+                <figure>
+                    <figcaption>German design.</figcaption>
+                    <img src="https://www.holidify.com/images/cmsuploads/compressed/Gemrany_Monastery,Lumbini_20181009130404_20181009130413.jpg" alt="Germany Monastery" onclick="openModal(this)">                 
+                </figure>
+                <figure>
+                    <figcaption>Tranquil garden.</figcaption>
+                    <img src="https://admin.ntb.gov.np/image-cache/Pic_1-1634710764.jpg?p=main&s=f0fe14f9aefb3b8ac1ff3a8d61ce6dc0" alt="Lumbini Garden" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Sacred space.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCfiyYtO9qYszasGuhM1Xprw2-LJBwmWYskw&s" alt="Buddhist Temple" onclick="openModal(this)">                
+                   </figure>
+                <figure>
+                    <figcaption>Monks' retreat.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMGH_yuDk1jGhSUB0I7mh6JvjtLOnfZEJtJw&s" alt="Buddhist Monastery" onclick="openModal(this)">               
+                </figure>
+                <figure>
+                    <figcaption>Garden of peace.</figcaption>
+                    <img height="500" width="500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjUqdhr3woKAFjNSG4nHnp5SliCZJQ1RbaFg&s" alt="Peace Garden" onclick="openModal(this)">                
+                </figure>
+                <figure>
+                    <figcaption>Meditation center.</figcaption>
+                    <img height="500" width="500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0AMCsbRx-kcHoPO1fa2aACYhmRL9t2A2sKw&s" alt="Meditation Center" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Culture hub.</figcaption>
+                    <img height="500" width="500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCkV1RiS7nSQoaT3xmQUBq87GvVE7-bnhseA&s" alt="Cultural Center" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Local history.</figcaption>
+                    <img height="500" width="500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzxDD3QHCAKqkQ46qKiwJi5hoQcDsgvHrx3Q&s" alt="Lumbini Museum" onclick="openModal(this)">                 
+                </figure>
+                <figure>
+                    <figcaption>Buddha statue.</figcaption>
+                    <img height="500" width="500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKXbrisJ4XwQ0Wd83-l-2RFaFGaTpfnUeknw&s" alt="Buddha Statue" onclick="openModal(this)">                   
+                </figure>
+                <figure>
+                    <figcaption>Gathering temple.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScHvFd_Oaf-QA9UQRgjIrEhAWs85jhjOBRyg&s" alt="Lumbini Temple" onclick="openModal(this)">               
+                </figure>
+                <figure>
+                    <figcaption>Heritage site.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Q-qMmr4gP5GqeDwsoFgd19RlLkCuFVCmBQ&s" alt="Heritage Site" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Spiritual path.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWI6ThhvEvwAoyn-V9eGTObQwjWH2Up8Q6Qw&s" alt="Pilgrimage" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Secluded life.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMrtC0MwDFOA5P-1t6lYeIsRfqjJEYsOHyeQ&s" alt="Monastery" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Peaceful vibes.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS55qM6MaeTIC2jwk1csCEfj_OVoSXU4xMWpQ&s" alt="Atmosphere" onclick="openModal(this)">
+                </figure>
+                <figure>
+                    <figcaption>Calm setting.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToHcuGX_13F8kWd0tbuOdxDf8JL0ta-4gihQ&s" alt="Serenity" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Lush pathways.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyq_9hfeYh7rNOdKo5_PZSG53r4xDNKZOVsA&s" alt="Pathways" onclick="openModal(this)">                
+                </figure>
+                <figure>
+                    <figcaption>Beautiful gardens.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXcMYk2LLMnHVUPXCYcHy1aIjfm8bMVjctmw&s" alt="Gardens" onclick="openModal(this)">                   
+                </figure>
+                <figure>
+                    <figcaption>Cultural fest.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4QMF7Hb6YU3qaCP9RjjMzexjGFO7VrJYoAg&s" alt="Festival" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Traditional rituals.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbRs5TXAi6z_CwtEXaGJwDx56I41FmhY9d8w&s" alt="Rituals" onclick="openModal(this)">                   
+                <figure>
+                    <figcaption>Unique architecture.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfzl3RRvrlcCKdyN9PHK5jAYkLWnb89uJeog&s" alt="Architecture" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Spiritual journey.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN9Uk9GWUN6Nn073j-7QiSTILWEE3-iqNlgg&s" alt="Journey" onclick="openModal(this)">                 
+                </figure>
+                <figure>
+                    <figcaption>Relaxation spot.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq29Rph_Z5RCV1KoOv5vXF60h2PUQj_O4WtQ&s" alt="Retreat" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Contemplation.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS63pSCR7TOWsqtyzd3Sf55opsc5_OUWud4SA&s" alt="Reflection" onclick="openModal(this)">                   
+                </figure>
+                <figure>
+                    <figcaption>Peaceful moments.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbRs5TXAi6z_CwtEXaGJwDx56I41FmhY9d8w&s" alt="Quiet Moments" onclick="openModal(this)">
+                </figure>
+                <figure>
+                    <figcaption>Community space.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOsH6nt4D35C2IW0LhRE3aWgAR4rpYtI-QBA&s" alt="Community" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Breathtaking views.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjaubWqqIOBv7QqTGxcUHuZv2aL06K5yuwUA&s" alt="Views" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Natural landscape.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7GzoyiY4FtjFHkiBZ7ogvGjn5-XP21cE9kg&s" alt="Landscape" onclick="openModal(this)">                   
+                </figure>
+                <figure>
+                    <figcaption>Tranquil setting.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRruetCWOH0nG7Qiw_vSBIq9tTUHMBjEynsUQ&s" alt="Peaceful Setting" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Inner peace.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe9_cswAHjojtd20ljwSJWMW8rGhscFTj-zA&s" alt="Meditation" onclick="openModal(this)">                  
+                </figure>
+                <figure>
+                    <figcaption>Calm vibes.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGoVGBzjIy0Q3vRh0xyfGABlgike_cWQhEtg&s" alt="Peaceful Vibes" onclick="openModal(this)">                
+                </figure>
+                <figure>
+                    <figcaption>Faith elements.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYZXWpQXPRRrM3gRbp5rvA5xiAjWJ6aeErfA&s" alt="Spirituality" onclick="openModal(this)">                   
+                </figure>
+                <figure>
+                    <figcaption>State of calm.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDTCRHTF3vNnhvHP5MYaltSTev-TNvVfbDFA&s" alt="Tranquility" onclick="openModal(this)">
+                </figure>
+                <figure>
+                    <figcaption>Lumbini essence.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl79pB7eX53224CxpZUKM1g_rz-Uwcj1U8Cw&s" alt="Experience" onclick="openModal(this)">                    
+                </figure>
+                <figure>
+                    <figcaption>Nature's beauty.</figcaption>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnCkH6D-71FOwIfeZ0ZVtDEHp2RZAihrL6fQ&s" alt="Nature" onclick="openModal(this)">                 
+                </figure>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("modalImg");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById("myModal").addEventListener("click", function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
