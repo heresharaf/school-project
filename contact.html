@@ -1,147 +1,108 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="styles.css">
-   <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f8ece9, #9c9793);
-            margin: 0;
-            background-image: -webkit-image-set();
-            padding: 20px;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumbini Ticket Booking</title>
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: bgFade 10s infinite alternate;
+    }
 
-        header {
-            background: rgba(0, 123, 255, 0.9);
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 5px;
-        }
+    @keyframes bgFade {
+      0% { background: linear-gradient(135deg, #f6d365, #fda085); }
+      100% { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+    }
 
-        main {
-            margin: 20px auto;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
+    .container {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 450px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
 
-        main:hover {
-            transform: scale(1.02);
-        }
+    .title {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: #333;
+      font-weight: 700;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        h2 {
-            color: #333;
-        }
+    .form-group {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
 
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
+    label {
+      display: block;
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 0.3rem;
+    }
 
-        input[type="text"], input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: border-color 0.3s;
-        }
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
 
-        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #0072ff;
+      box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
+    }
 
-        button {
-            background: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-        }
+    .btn {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
 
-        button:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
+    .btn:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+      transform: scale(1.05);
+    }
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #777;
-        }
+    #result {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #222;
+      padding: 1rem;
+      background-color: #f0f8ff;
+      border-left: 4px solid #0072ff;
+      border-radius: 10px;
+    }
 
-        /* Chatbox styles */
-        #chatToggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #007BFF;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s;
-        }
-
-        #chatToggle:hover {
-            background: #0056b3;
-        }
-
-        #chatbox {
-            width: 300px;
-            height: 400px;
-            border: 1px solid #ccc;
-            overflow-y: auto;
-            padding: 10px;
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            background-color: #fff;
-            display: none;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #chatMessages {
-            margin-bottom: 10px;
-        }
-
-        #chatInput {
-            width: calc(100% - 20px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: border-color 0.3s;
-        }
-
-        #chatInput:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-
-        .user-message {
-            text-align: right;
-            color: #007BFF;
-            margin: 5px 0;
-        }
-
-        .chatgpt-message {
-            text-align: left;
-            color: #333;
-            margin: 5px 0;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }     }
         #navebar {
             background: rgba(51, 51, 51, 0.9);
             color: #fff;
@@ -182,61 +143,89 @@
             <a href="contact.html">Contact</a>
             <a href="servey.html">Survey</a>
         </nav>
-    </header>
-    
-    <header>
-        <h1>Contact Us</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Get More Information</h2>
-            <form action="submit_form.php" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+    </header
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Lumbini Ticket Booking</h1>
+    <form id="booking-form">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="ticketType">Ticket Type</label>
+        <select id="ticketType" required>
+          <option value="standard" data-price="500">Standard - ₹500</option>
+          <option value="vip" data-price="1000">VIP - ₹1000</option>
+          <option value="student" data-price="300">Student - ₹300</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="travelPlace">Travel Place</label>
+        <select id="travelPlace" required>
+          <option value="bhairahwa" data-price="200">Bhairahwa - ₹200</option>
+          <option value="butwal" data-price="300">Butwal - ₹300</option>
+          <option value="taulihawa" data-price="400">Taulihawa - ₹400</option>
+          <option value="dharan" data-price="600">Dharan - ₹600</option>
+          <option value="4no" data-price="500">4 No. - ₹500</option>
+          <option value="custom" data-price="0">Other (Enter Below)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="customPlace">Custom Travel Place (Optional)</label>
+        <input type="text" id="customPlace" placeholder="Enter custom place">
+        <input type="number" id="customDistance" placeholder="Enter distance to Lumbini (in KM)" min="1">
+      </div>
+      <div class="form-group">
+        <label for="numTickets">Number of Tickets</label>
+        <input type="number" id="numTickets" min="1" placeholder="Enter number of tickets" required>
+      </div>
+      <button type="submit" class="btn">Calculate Total</button>
+    </form>
+    <div id="result"></div>
+  </div>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+  <script>
+    document.getElementById('booking-form').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const ticketType = document.getElementById('ticketType');
+      const travelPlace = document.getElementById('travelPlace');
+      const customPlace = document.getElementById('customPlace').value.trim();
+      const customDistance = parseInt(document.getElementById('customDistance').value.trim());
+      const numTickets = parseInt(document.getElementById('numTickets').value);
 
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Your Company Name</p>
-    </footer>
+      const ticketPrice = parseInt(ticketType.options[ticketType.selectedIndex].dataset.price);
 
-    <div id="chatToggle">💬</div>
-    <div id="chatbox">
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type a message..." />
-    </div>
+      let travelPrice = 0;
+      if (travelPlace.value === "custom" && customPlace && customDistance) {
+        const basePrice = 100;
+        const pricePerKm = 10;
+        travelPrice = basePrice + (customDistance * pricePerKm);
+      } else {
+        travelPrice = parseInt(travelPlace.options[travelPlace.selectedIndex].dataset.price);
+      }
 
-    <script>
-        const chatToggle = document.getElementById('chatToggle');
-        const chatbox = document.getElementById('chatbox');
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
+      const totalPrice = (ticketPrice + travelPrice) * numTickets;
 
-        chatToggle.onclick = function() {
-            chatbox.style.display = chatbox.style.display === 'none' ? 'block' : 'none';
-        };
-
-        chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-                const userMessage = chatInput.value;
-                chatMessages.innerHTML += `<div class="user-message">User: ${userMessage}</div>`;
-                chatInput.value = '';
-
-                // Simulate a response from ChatGPT
-                setTimeout(() => {
-                    chatMessages.innerHTML += `<div class="chatgpt-message">ChatGPT: I'm here to help! What do you need assistance with?</div>`;
-                    chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-                }, 1000);
-            }
-        });
-    </script>
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <strong>Thank you, ${fullName}!</strong><br>
+        You selected <strong>${numTickets}</strong> ${ticketType.value} ticket(s) with <strong>${
+        customPlace || travelPlace.options[travelPlace.selectedIndex].text
+      }</strong> travel.<br>
+        <strong>Total Price:</strong> ₹${totalPrice}.<br>
+        Booking confirmation will be sent to <strong>${email}</strong>.
+      `;
+    });
+  </script>
 </body>
 </html>
