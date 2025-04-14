@@ -142,7 +142,7 @@
             <a href="history.html">History</a>
             <a href="visiting.html">Visiting</a>
             <a href="gallery.html">Gallery</a>
-            <a href="contact.html">tickting</a>
+            <a href="contact.html">Ticketing</a>
             <a href="survey.html">Survey</a>
         </nav>
     </header>
@@ -171,6 +171,18 @@
             <label for="comments">Additional Comments:</label>
             <textarea id="comments" name="comments" rows="4" placeholder="Any additional information..."></textarea>
 
+            <!-- Donation Box -->
+            <label for="donation">Donation for Lumbini Welfare:</label>
+            <input type="number" id="donation" name="donation" placeholder="Enter amount (optional)" min="0">
+
+            <label for="bank">Select Bank for Donation:</label>
+            <select id="bank" name="bank" required>
+                <option value="">Select Bank...</option>
+                <option value="bank1">Bank of Lumbini</option>
+                <option value="bank2">Lumbini Welfare Bank</option>
+                <option value="bank3">Nepal Bank Ltd.</option>
+            </select>
+
             <button type="submit">Submit</button>
         </form>
         <div class="thank-you" id="thank-you-message">Thank you for your response!</div>
@@ -179,6 +191,22 @@
     <script>
         document.getElementById('survey-form').addEventListener('submit', function(event) {
             event.preventDefault(); 
+
+            // Validate donation amount
+            const donationAmount = document.getElementById('donation').value;
+            const bankSelected = document.getElementById('bank').value;
+
+            if (donationAmount && donationAmount < 0) {
+                alert("Please enter a valid donation amount.");
+                return;
+            }
+
+            if (!bankSelected) {
+                alert("Please select a bank for your donation.");
+                return;
+            }
+
+            // Show thank you message
             document.getElementById('thank-you-message').style.display = 'block';
             document.getElementById('thank-you-message').style.animation = 'fadeIn 1s ease-in-out';
             this.reset();
