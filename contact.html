@@ -1,228 +1,324 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lumbini Ticket Booking</title>
-  <style>
-    /* General Reset */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      animation: bgFade 10s infinite alternate;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lumbini Ticket Booking</title>
+        <style>
+            /* General Reset */
+            body {
+                margin: 0;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+                min-height: 100vh;
+                animation: bgFade 10s infinite alternate;
+                padding-top: 80px; /* Space for fixed navbar */
+            }
 
-    @keyframes bgFade {
-      0% { background: linear-gradient(135deg, #f6d365, #fda085); }
-      100% { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
-    }
+            @keyframes bgFade {
+                0% {
+                    background: linear-gradient(135deg, #f6d365, #fda085);
+                }
+                100% {
+                    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+                }
+            }
 
-    .container {
-      background: #fff;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      width: 100%;
-      max-width: 450px;
-      animation: fadeIn 1.2s ease-in-out;
-    }
+            /* Navbar Styles */
+            #navbar {
+                background: rgba(51, 51, 51, 0.9);
+                color: #fff;
+                padding: 15px 0;
+                text-align: center;
+                font-size: 1.5em;
+                font-weight: bold;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                transition: background 0.3s;
+            }
 
-    .title {
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      color: #333;
-      font-weight: 700;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+            nav {
+                margin-top: 10px;
+                text-align: center;
+            }
 
-    .form-group {
-      margin-bottom: 1.2rem;
-      text-align: left;
-    }
+            nav a {
+                margin: 0 15px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
 
-    label {
-      display: block;
-      font-size: 0.95rem;
-      color: #444;
-      margin-bottom: 0.3rem;
-    }
+            nav a:hover {
+                color: #fdd835;
+            }
 
-    input, select {
-      width: 100%;
-      padding: 0.6rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
+            /* Form Container */
+            .container {
+                background: #fff;
+                padding: 2.5rem;
+                border-radius: 20px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                width: 100%;
+                max-width: 450px;
+                animation: fadeIn 1.2s ease-in-out;
+                margin: 40px auto;
+            }
 
-    input:focus, select:focus {
-      outline: none;
-      border-color: #0072ff;
-      box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
-    }
+            .title {
+                margin-bottom: 1.5rem;
+                font-size: 2rem;
+                color: #333;
+                font-weight: 700;
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
 
-    .btn {
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      color: white;
-      border: none;
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
+            .form-group {
+                margin-bottom: 1.2rem;
+                text-align: left;
+            }
 
-    .btn:hover {
-      background: linear-gradient(to right, #0072ff, #00c6ff);
-      transform: scale(1.05);
-    }
+            label {
+                display: block;
+                font-size: 0.95rem;
+                color: #444;
+                margin-bottom: 0.3rem;
+            }
 
-    #result {
-      margin-top: 1.5rem;
-      font-size: 1.1rem;
-      color: #222;
-      padding: 1rem;
-      background-color: #f0f8ff;
-      border-left: 4px solid #0072ff;
-      border-radius: 10px;
-    }
+            input,
+            select {
+                width: 100%;
+                padding: 0.6rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+            }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }     }
-        #navebar {
-            background: rgba(51, 51, 51, 0.9);
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 1.5em;
-            font-weight: bold;
-           
-            transition: background 0.3s;
-        }
-        nav {
-            margin-top: 60px;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #fdd835;
-        }
-    </style>
-</head>
-<body>
-    <header id="navbar">
-        Lumbini - Birthplace of Buddha
-        <nav>
-            <a href="index.html">About</a>
-            <a href="history.html">History</a>
-            <a href="visiting.html">Visiting</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
-            <a href="servey.html">Survey</a>
-        </nav>
-    </header
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1 class="title">Lumbini Ticket Booking</h1>
-    <form id="booking-form">
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" placeholder="Enter your name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-      </div>
-      <div class="form-group">
-        <label for="ticketType">Ticket Type</label>
-        <select id="ticketType" required>
-          <option value="standard" data-price="500">Standard - ₹500</option>
-          <option value="vip" data-price="1000">VIP - ₹1000</option>
-          <option value="student" data-price="300">Student - ₹300</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="travelPlace">Travel Place</label>
-        <select id="travelPlace" required>
-          <option value="bhairahwa" data-price="200">Bhairahwa - ₹200</option>
-          <option value="butwal" data-price="300">Butwal - ₹300</option>
-          <option value="taulihawa" data-price="400">Taulihawa - ₹400</option>
-          <option value="dharan" data-price="600">Dharan - ₹600</option>
-          <option value="4no" data-price="500">4 No. - ₹500</option>
-          <option value="custom" data-price="0">Other (Enter Below)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="customPlace">Custom Travel Place (Optional)</label>
-        <input type="text" id="customPlace" placeholder="Enter custom place">
-        <input type="number" id="customDistance" placeholder="Enter distance to Lumbini (in KM)" min="1">
-      </div>
-      <div class="form-group">
-        <label for="numTickets">Number of Tickets</label>
-        <input type="number" id="numTickets" min="1" placeholder="Enter number of tickets" required>
-      </div>
-      <button type="submit" class="btn">Calculate Total</button>
-    </form>
-    <div id="result"></div>
-  </div>
+            input:focus,
+            select:focus {
+                outline: none;
+                border-color: #0072ff;
+                box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
+            }
 
-  <script>
-    document.getElementById('booking-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+            .btn {
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                color: white;
+                border: none;
+                padding: 0.75rem 2rem;
+                font-size: 1rem;
+                border-radius: 50px;
+                cursor: pointer;
+                transition:
+                    transform 0.3s,
+                    background 0.3s;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+            }
 
-      const fullName = document.getElementById('fullName').value;
-      const email = document.getElementById('email').value;
-      const ticketType = document.getElementById('ticketType');
-      const travelPlace = document.getElementById('travelPlace');
-      const customPlace = document.getElementById('customPlace').value.trim();
-      const customDistance = parseInt(document.getElementById('customDistance').value.trim());
-      const numTickets = parseInt(document.getElementById('numTickets').value);
+            .btn:hover {
+                background: linear-gradient(to right, #0072ff, #00c6ff);
+                transform: scale(1.05);
+            }
 
-      const ticketPrice = parseInt(ticketType.options[ticketType.selectedIndex].dataset.price);
+            #result {
+                margin-top: 1.5rem;
+                font-size: 1.1rem;
+                color: #222;
+                padding: 1rem;
+                background-color: #f0f8ff;
+                border-left: 4px solid #0072ff;
+                border-radius: 10px;
+            }
 
-      let travelPrice = 0;
-      if (travelPlace.value === "custom" && customPlace && customDistance) {
-        const basePrice = 100;
-        const pricePerKm = 10;
-        travelPrice = basePrice + (customDistance * pricePerKm);
-      } else {
-        travelPrice = parseInt(travelPlace.options[travelPlace.selectedIndex].dataset.price);
-      }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-      const totalPrice = (ticketPrice + travelPrice) * numTickets;
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .container {
+                    margin: 20px;
+                    padding: 1.5rem;
+                }
 
-      const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `
+                nav a {
+                    margin: 0 8px;
+                    font-size: 0.9em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header id="navbar">
+            Lumbini - Birthplace of Buddha
+            <nav>
+                <a href="index.html">About</a>
+                <a href="history.html">History</a>
+                <a href="visiting.html">Visiting</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Tickting</a>
+                <a href="servey.html">Survey</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h1 class="title">Lumbini Ticket Booking</h1>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your name"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="ticketType">Ticket Type</label>
+                    <select id="ticketType" required>
+                        <option value="standard" data-price="500">
+                            Standard - ₹500
+                        </option>
+                        <option value="vip" data-price="1000">
+                            VIP - ₹1000
+                        </option>
+                        <option value="student" data-price="300">
+                            Student - ₹300
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="travelPlace">Travel Place</label>
+                    <select id="travelPlace" required>
+                        <option value="bhairahwa" data-price="200">
+                            Bhairahwa - ₹200
+                        </option>
+                        <option value="butwal" data-price="300">
+                            Butwal - ₹300
+                        </option>
+                        <option value="taulihawa" data-price="400">
+                            Taulihawa - ₹400
+                        </option>
+                        <option value="dharan" data-price="600">
+                            Dharan - ₹600
+                        </option>
+                        <option value="4no" data-price="500">
+                            4 No. - ₹500
+                        </option>
+                        <option value="custom" data-price="0">
+                            Other (Enter Below)
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="customPlace"
+                        >Custom Travel Place (Optional)</label
+                    >
+                    <input
+                        type="text"
+                        id="customPlace"
+                        placeholder="Enter custom place"
+                    />
+                    <input
+                        type="number"
+                        id="customDistance"
+                        placeholder="Enter distance to Lumbini (in KM)"
+                        min="1"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="numTickets">Number of Tickets</label>
+                    <input
+                        type="number"
+                        id="numTickets"
+                        min="1"
+                        placeholder="Enter number of tickets"
+                        required
+                    />
+                </div>
+                <button type="submit" class="btn">Calculate Total</button>
+            </form>
+            <div id="result"></div>
+        </div>
+
+        <script>
+            document
+                .getElementById("booking-form")
+                .addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    const fullName = document.getElementById("fullName").value;
+                    const email = document.getElementById("email").value;
+                    const ticketType = document.getElementById("ticketType");
+                    const travelPlace = document.getElementById("travelPlace");
+                    const customPlace = document
+                        .getElementById("customPlace")
+                        .value.trim();
+                    const customDistance = parseInt(
+                        document.getElementById("customDistance").value.trim(),
+                    );
+                    const numTickets = parseInt(
+                        document.getElementById("numTickets").value,
+                    );
+
+                    const ticketPrice = parseInt(
+                        ticketType.options[ticketType.selectedIndex].dataset
+                            .price,
+                    );
+
+                    let travelPrice = 0;
+                    if (
+                        travelPlace.value === "custom" &&
+                        customPlace &&
+                        customDistance
+                    ) {
+                        const basePrice = 100;
+                        const pricePerKm = 10;
+                        travelPrice = basePrice + customDistance * pricePerKm;
+                    } else {
+                        travelPrice = parseInt(
+                            travelPlace.options[travelPlace.selectedIndex]
+                                .dataset.price,
+                        );
+                    }
+
+                    const totalPrice = (ticketPrice + travelPrice) * numTickets;
+
+                    const resultDiv = document.getElementById("result");
+                    resultDiv.innerHTML = `
         <strong>Thank you, ${fullName}!</strong><br>
         You selected <strong>${numTickets}</strong> ${ticketType.value} ticket(s) with <strong>${
-        customPlace || travelPlace.options[travelPlace.selectedIndex].text
-      }</strong> travel.<br>
+            customPlace || travelPlace.options[travelPlace.selectedIndex].text
+        }</strong> travel.<br>
         <strong>Total Price:</strong> ₹${totalPrice}.<br>
         Booking confirmation will be sent to <strong>${email}</strong>.
       `;
-    });
-  </script>
-</body>
+                });
+        </script>
+    </body>
 </html>
