@@ -202,13 +202,13 @@
                     <label for="ticketType">Ticket Type</label>
                     <select id="ticketType" required>
                         <option value="standard" data-price="500">
-                            Standard - ₹500
+                            Standard - NRs500
                         </option>
                         <option value="vip" data-price="1000">
-                            VIP - ₹1000
+                            VIP - NRs1000
                         </option>
                         <option value="student" data-price="300">
-                            Student - ₹300
+                            Student - NRs300
                         </option>
                     </select>
                 </div>
@@ -216,19 +216,19 @@
                     <label for="travelPlace">Travel Place</label>
                     <select id="travelPlace" required>
                         <option value="bhairahwa" data-price="200">
-                            Bhairahwa - ₹200
+                            Bhairahwa - NRs200
                         </option>
                         <option value="butwal" data-price="300">
-                            Butwal - ₹300
+                            Butwal - NRs300
                         </option>
                         <option value="taulihawa" data-price="400">
-                            Taulihawa - ₹400
+                            Taulihawa - NRs400
                         </option>
                         <option value="dharan" data-price="600">
-                            Dharan - ₹600
+                            Dharan - NRs600
                         </option>
                         <option value="4no" data-price="500">
-                            4 No. - ₹500
+                            4 No. - NRs500
                         </option>
                         <option value="custom" data-price="0">
                             Other (Enter Below)
@@ -315,7 +315,7 @@
         You selected <strong>${numTickets}</strong> ${ticketType.value} ticket(s) with <strong>${
             customPlace || travelPlace.options[travelPlace.selectedIndex].text
         }</strong> travel.<br>
-        <strong>Total Price:</strong> ₹${totalPrice}.<br>
+        <strong>Total Price:</strong> NRs${totalPrice}.<br>
         Booking confirmation will be sent to <strong>${email}</strong>.
       `;
                 });
